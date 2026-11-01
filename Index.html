@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClipVenda - Gerador de Vídeo de Vendas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#0a0a0a;color:#fff;min-height:100vh;padding:20px}
+.container{max-width:480px;margin:0 auto}
+h1{font-size:28px;text-align:center;margin:20px 0;background:linear-gradient(90deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.card{background:#18181b;border:1px solid #27272a;border-radius:16px;padding:20px;margin-bottom:16px}
+label{display:block;font-size:13px;color:#a1a1aa;margin-bottom:6px;margin-top:12px}
+input,textarea,select{width:100%;background:#27272a;border:1px solid #3f3f46;border-radius:10px;padding:12px;color:#fff;font-size:15px}
+textarea{height:80px}
+button{width:100%;background:#fff;color:#000;border:none;padding:14px;border-radius:12px;font-weight:700;font-size:16px;margin-top:16px;cursor:pointer}
+button:disabled{opacity:.5}
+#resultado{white-space:pre-wrap;background:#09090b;border:1px dashed #3f3f46;border-radius:12px;padding:16px;margin-top:16px;font-size:14px;line-height:1.6;display:none}
+.tag{font-size:11px;background:#27272a;padding:4px 8px;border-radius:99px;color:#a1a1aa}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>ClipVenda IA</h1>
+<div class="card">
+<span class="tag">100% no celular</span>
+<label>Nome do Produto</label>
+<input id="produto" placeholder="Ex: Fone Bluetooth Pro">
+<label>Principal Benefício</label>
+<input id="beneficio" placeholder="Ex: Bateria 48h e grave potente">
+<label>Público Alvo</label>
+<select id="publico">
+<option>Homens 18-35</option>
+<option>Mulheres 18-35</option>
+<option>Todos</option>
+<option>Mães</option>
+<option>Empreendedores</option>
+</select>
+<label>Estilo do Vídeo</label>
+<select id="estilo">
+<option>Urgência e oferta</option>
+<option>Prova social</option>
+<option>Antes e Depois</option>
+<option>Humor</option>
+<option>Luxo e status</option>
+</select>
+<button id="btn" onclick="gerar()">GERAR ROTEIRO COM IA</button>
+<div id="resultado"></div>
+</div>
+</div>
+<script>
+async function gerar(){
+ const btn=document.getElementById('btn');
+ const res=document.getElementById('resultado');
+ const produto=document.getElementById('produto').value;
+ const beneficio=document.getElementById('beneficio').value;
+ const publico=document.getElementById('publico').value;
+ const estilo=document.getElementById('estilo').value;
+ if(!produto){alert('Digite o produto');return}
+ btn.disabled=true; btn.innerText='GERANDO...';
+ res.style.display='block'; res.innerText='Conectando na IA...';
+ try{
+  const r=await fetch('/api/gerar',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({produto,beneficio,publico,estilo})
+  });
+  const data=await r.json();
+  if(data.texto){res.innerText=data.texto}
+  else{res.innerText='Erro: '+(data.erro||'tente novamente')}
+ }catch(e){res.innerText='Erro de conexão: '+e.message}
+ btn.disabled=false; btn.innerText='GERAR ROTEIRO COM IA';
+}
+</script>
+</body>
+</html>
