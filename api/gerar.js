@@ -1,31 +1,45 @@
-// api/gerar.js
 export default async function handler(req, res) {
-  const prompt = req.query.prompt || "video de tenis girando em 360 graus, fundo branco";
-
-  const HF_TOKEN = process.env.HF_TOKEN;
-
-  if (!HF_TOKEN) {
-    return res.status(500).json({ erro: "HF_TOKEN não configurado na Vercel" });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Use POST' });
   }
 
-  const response = await fetch(
-    "https://api-inference.huggingface.co/models/Wan-AI/Wan2.1-T2V-14B",
-    {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${HF_TOKEN}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ inputs: prompt })
+  const apiKey = process.env.GEMINI_API_KEY;
+
+  if (!apiKey) {
+    return res.status(500).json({ error: 'GEMINI_API_KEY não configurada na Vercel' });
+  }
+
+  try {
+    const { prompt, imagem, descricao } = req.body;
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [
+              { text: prompt || descricao || "Crie uma copy de vendas para esse produto" },
+              ...(imagem ? [{ inline_data: { mime_type: "image/jpeg", data: imagem } }] : [])
+            ]
+          }]
+        })
+      }
+    );
+
+    const data = await response.json();
+    
+    if (!response.ok) {
+      console.log(data);
+      return res.status(500).json({ error: data.error?.message || 'Erro no Gemini' });
     }
-  );
 
-  if (!response.ok) {
-    const erro = await response.text();
-    return res.status(500).json({ erro });
+    const textoGerado = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Erro ao gerar';
+
+    return res.status(200).json({ texto: textoGerado });
+
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
   }
-
-  const videoBlob = await response.blob();
-  res.setHeader("Content-Type", "video/mp4");
-  res.send(Buffer.from(await videoBlob.arrayBuffer()));
 }
