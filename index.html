@@ -75,12 +75,10 @@ dialog{background:#0b1236;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 <div class="w">
 <header><div class="logo">Clip<i>Venda</i></div>
 <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="pill" id="status" aria-live="polite"></div><button class="ghost" id="auth" style="padding:8px 16px">Entrar</button></div></header>
-
 <h1>Seu vídeo de propaganda pronto em 3 passos</h1>
 <p class="lead">Escreva o que você vende, escolha o visual e baixe o vídeo para postar no Instagram, TikTok, WhatsApp ou YouTube. Sem precisar saber editar.</p>
 <button onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Começar teste grátis</button>
 <div class="chips"><span>Sem saber editar</span><span>Pronto em 6 segundos</span><span>Baixe e poste</span></div>
-
 <div class="app" id="app">
 <div class="card">
  <div class="step"><div class="n">1</div><div style="flex:1"><h3>Converse e envie a foto do produto</h3><p class="hint">Anexe a foto e escreva do seu jeito o que você vende. O assistente preenche tudo para você.</p>
@@ -92,13 +90,12 @@ dialog{background:#0b1236;box-shadow:0 30px 80px rgba(0,0,0,.6)}
   <style>#app input,#app textarea{padding:15px 16px;font-size:17px;border-radius:12px}#app textarea{min-height:112px;resize:vertical;line-height:1.5}#app .card label{font-size:15px;margin-top:16px}</style><label for="nome">Nome do produto ou loja</label><input id="nome" value="Padaria Sabor da Vila" maxlength="40">
   <label for="oferta">Qual é a oferta?</label><input id="oferta" value="Pão quentinho toda manhã" maxlength="60">
   <label for="preco">Preço ou desconto</label><input id="preco" value="2 por R$ 5,00" maxlength="24">
-  <label for="cta">O que o cliente deve fazer?</label><input id="cta" value="Peça pelo WhatsApp" maxlength="30"><label for="desc">Descreva seu produto</label><textarea id="desc" maxlength="300" placeholder="Ex.: pães feitos na hora, com fermentação natural, entrega grátis no bairro…">Pães feitos na hora, com fermentação natural. Entrega grátis no bairro.</textarea><label for="acao">O que o vídeo deve mostrar ou fazer?</label><textarea id="acao" maxlength="300" placeholder="Ex.: mostrar o pão saindo do forno e terminar com o endereço e o telefone…">Mostrar o pão saindo do forno e terminar chamando o cliente para pedir.</textarea><label for="roteiro">Texto da narração (o que a voz vai falar)</label><textarea id="roteiro" maxlength="300" placeholder="Ex.: Pão quentinho toda manhã na Padaria Sabor da Vila. Dois por cinco reais. Peça pelo WhatsApp!">Pão quentinho toda manhã na Padaria Sabor da Vila. Dois por cinco reais. Peça pelo WhatsApp!</textarea></details></div></div>
+  <label for="cta">O que o cliente deve fazer?</label><input id="cta" value="Peça pelo WhatsApp" maxlength="30"><label for="desc">Descreva seu produto</label><textarea id="desc" maxlength="300">Pães feitos na hora, com fermentação natural. Entrega grátis no bairro.</textarea><label for="acao">O que o vídeo deve mostrar ou fazer?</label><textarea id="acao" maxlength="300">Mostrar o pão saindo do forno e terminar chamando o cliente para pedir.</textarea><label for="roteiro">Texto da narração (o que a voz vai falar)</label><textarea id="roteiro" maxlength="300">Pão quentinho toda manhã na Padaria Sabor da Vila. Dois por cinco reais. Peça pelo WhatsApp!</textarea></details></div></div>
  <div class="step"><div class="n">2</div><div style="flex:1"><h3>Escolha o visual e o tamanho</h3><p class="hint">O tamanho muda conforme a rede social.</p>
   <div class="opts" id="styles"></div><div style="height:10px"></div><div class="opts" id="fmts"></div><div style="height:10px"></div><div class="opts" id="modes"></div></div></div>
  <div class="step"><div class="n">3</div><div style="flex:1"><h3>Crie seu vídeo</h3><p class="hint">Leva cerca de 6 segundos. Gasta 1 crédito.</p>
   <button id="gen">Gerar vídeo</button><div class="bar"><div id="prog"></div></div><p class="msg" id="msg"></p></div></div>
 </div>
-
 <div class="card">
  <h3 style="margin-top:0">Pré-visualização</h3>
  <div class="stage"><canvas id="cv"></canvas><video id="vid" controls playsinline></video></div>
@@ -110,7 +107,6 @@ dialog{background:#0b1236;box-shadow:0 30px 80px rgba(0,0,0,.6)}
  </div>
 </div>
 </div>
-
 <style>#acct{margin:0 0 10px}#acct .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0}#acct .g>div{border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(4,8,24,.5)}#acct .g small{color:var(--mut);display:block;font-size:13px}#acct .g b{font-size:20px}#acct ul{margin:8px 0 0;padding-left:18px;color:var(--mut);font-size:14px}.err{color:#ff8a8a;font-size:14px;min-height:20px;margin:6px 0 0}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}</style>
 <section class="card" id="acct" hidden><h3 id="aname" style="margin:0"></h3>
 <div class="g"><div><small>Meu plano</small><b id="aplan"></b></div><div><small>Créditos deste mês</small><b id="acr"></b><div class="bar"><div id="abar"></div></div></div></div>
@@ -122,17 +118,11 @@ dialog{background:#0b1236;box-shadow:0 30px 80px rgba(0,0,0,.6)}
  <div class="card plan"><h3>Teste grátis</h3><div class="price">R$ 0</div><ul><li>3 vídeos para testar</li><li>Formato vertical (Stories e Reels)</li><li>Marca d’água ClipVenda</li></ul><button class="ghost" onclick="reset()">Reiniciar teste</button></div>
  <div class="card plan pro"><h3>Assinatura Pro</h3><div class="price">R$ 49 <small>/mês</small></div><ul><li>40 vídeos por mês</li><li>Todos os tamanhos: vertical, quadrado e horizontal</li><li>Sem marca d’água</li><li>Baixe em WebM, MP4 (quando o aparelho permitir) e capa em PNG</li><li>Créditos renovados todo mês, sem acumular para o mês seguinte</li></ul><button onclick="subscribe()">Assinar Pro</button></div>
 </div>
-<footer>Demonstração: o pagamento é simulado. Para cobrar de verdade, conecte um provedor como Stripe, Mercado Pago ou Asaas.<br><button class="ghost" id="adm" style="margin-top:12px;padding:8px 14px;font-size:13px">Painel do dono</button></footer>
-<dialog id="admd" style="max-width:500px"><h3 style="margin-top:0">Painel do dono</h3><p class="hint">Quando o servidor de vídeo estiver pronto, é aqui que você liga a geração com IA. Enquanto estiver desligada, o site usa a animação feita no próprio navegador.</p><label for="aurl">Endereço do servidor de vídeo</label><input id="aurl" placeholder="Deixe vazio para usar o /api/gerar do próprio site"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" id="aon" style="width:auto"> Ligar geração com IA para os clientes</label><p class="err" id="amsg" role="status" style="color:var(--mut)"></p><div class="row"><button class="ghost" id="atest" type="button">Testar conexão</button><button id="asave" type="button">Salvar</button><button class="ghost" type="button" onclick="admd.close()">Fechar</button></div><details style="margin-top:14px"><summary style="cursor:pointer;color:var(--mut);font-size:14px">Como o servidor precisa responder</summary><pre style="white-space:pre-wrap;font-size:12px;color:var(--mut)">GET  /saude → 200
-POST /jobs  → {"id":"abc"}
-  recebe: foto (JPEG em base64), nome, oferta, preco, cta, descricao, instrucao, narracao (texto para a voz), voz, estilo, formato {largura, altura}
-  o servidor chama a API de vídeo e a API de voz ao mesmo tempo, junta as duas (ffmpeg) e devolve UM mp4 com imagem e áudio
-GET  /jobs/abc → {"status":"fila|rodando|pronto|erro", "progresso":0-100, "video_url":"https://….mp4"}</pre><p class="hint">Na versão real, este painel fica restrito ao dono e a chave da RunPod fica só no servidor.</p></details></dialog>
+<footer>Demonstração: o pagamento é simulado.<br><button class="ghost" id="adm" style="margin-top:12px;padding:8px 14px;font-size:13px">Painel do dono</button></footer>
+<dialog id="admd" style="max-width:500px"><h3 style="margin-top:0">Painel do dono</h3><p class="hint">Deixe vazio para usar o /api/gerar do próprio site</p><label for="aurl">Endereço do servidor de vídeo</label><input id="aurl" placeholder="Deixe vazio para usar o /api/gerar do próprio site"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" id="aon" style="width:auto"> Ligar geração com IA para os clientes</label><p class="err" id="amsg" role="status" style="color:var(--mut)"></p><div class="row"><button class="ghost" id="atest" type="button">Testar conexão</button><button id="asave" type="button">Salvar</button><button class="ghost" type="button" onclick="admd.close()">Fechar</button></div></dialog>
 </div>
-
 <dialog id="login"><h3 style="margin-top:0" id="lt"></h3><form id="lform" autocomplete="on"><div><label for="lname">Seu nome</label><input id="lname" maxlength="30" autocomplete="name"></div><label for="lmail">E-mail</label><input id="lmail" type="email" required autocomplete="email"><label for="lpass">Senha (mínimo 6 caracteres)</label><input id="lpass" type="password" required autocomplete="current-password"><p class="err" id="lerr" role="alert"></p><button id="lsub" style="width:100%"></button></form><div class="row" style="justify-content:space-between"><button class="ghost" id="lsw" type="button"></button><button class="ghost" type="button" onclick="login.close()">Fechar</button></div><p class="hint" style="margin:12px 0 0">Demonstração: sua conta fica salva só neste navegador.</p></dialog>
 <dialog id="dlg"><h3 style="margin-top:0" id="dt"></h3><p id="dp" style="color:var(--mut)"></p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="ghost" onclick="dlg.close()">Agora não</button><button id="dok">Ver planos</button></div></dialog>
-
 <script>
 const $=id=>document.getElementById(id);
 const S={pro:false,credits:3,style:0,fmt:0,blob:null,mime:'',busy:false};
@@ -251,25 +241,27 @@ fi.onchange=()=>{const f=fi.files[0];fi.value='';if(!f)return;const im=new Image
 async function send(){const t=cin.value.trim();if(busy||(!t&&!pblob))return;busy=true;$('csend').disabled=true;
  const blob=pblob,url=blob?purl:'';msg(t||'Segue a foto do produto.','u',url);cin.value='';pblob=null;pv.innerHTML='';
  const w=msg('Lendo as suas informações…','a');
- try{const sample=await claude.use('sample');if(!sample)throw new Error('none');
-  const cur=JSON.stringify({nome:$('nome').value,oferta:$('oferta').value,preco:$('preco').value,cta:$('cta').value,desc:$('desc').value,acao:$('acao').value,roteiro:$('roteiro').value,estilo:STY[S.style].n});
-  const ins='Você é o assistente de uma ferramenta que cria vídeos curtos de propaganda para pequenos comerciantes brasileiros. Entenda o pedido e a foto do produto (se houver) e responda SOMENTE com JSON, sem markdown, neste formato: {"resposta":"mensagem curta e simpática em português, 1 a 3 frases, dizendo o que você entendeu e, se faltar algo importante como o preço, perguntando só isso","nome":"nome do produto ou loja, até 40 caracteres","oferta":"frase de oferta, até 60","preco":"preço ou desconto, até 24","cta":"chamada para ação, até 30","desc":"descrição atraente do produto, até 200","acao":"o que o vídeo deve mostrar","roteiro":"texto curto para a voz narrar no vídeo, em tom natural de propaganda, até 25 palavras","estilo":"Moderno, Promoção ou Elegante"}. Mantenha o valor atual de um campo quando o cliente não pediu mudança nele. Nunca invente um preço que o cliente não informou. Estado atual: '+cur;
-  const o={modelTier:'quick'};if(blob&&(await sample.limits()).images)o.images=[blob];
-  const r=await sample.json(ins+'\n\nMensagem do cliente: '+(t||'(apenas a foto)'),o);
+ try{
+    let imagemBase64=null;
+    if(blob){imagemBase64=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(blob);});}
+    const cur=JSON.stringify({nome:$('nome').value,oferta:$('oferta').value,preco:$('preco').value,cta:$('cta').value,desc:$('desc').value,acao:$('acao').value,roteiro:$('roteiro').value,estilo:STY[S.style].n});
+    const ins='Você é o assistente de uma ferramenta que cria vídeos curtos de propaganda para pequenos comerciantes brasileiros. Entenda o pedido e a foto do produto (se houver) e responda SOMENTE com JSON, sem markdown, neste formato: {"resposta":"mensagem curta e simpática em português, 1 a 3 frases, dizendo o que você entendeu e, se faltar algo importante como o preço, perguntando só isso","nome":"nome do produto ou loja, até 40 caracteres","oferta":"frase de oferta, até 60","preco":"preço ou desconto, até 24","cta":"chamada para ação, até 30","desc":"descrição atraente do produto, até 200","acao":"o que o vídeo deve mostrar","roteiro":"texto curto para a voz narrar no vídeo, em tom natural de propaganda, até 25 palavras","estilo":"Moderno, Promoção ou Elegante"}. Mantenha o valor atual de um campo quando o cliente não pediu mudança nele. Nunca invente um preço que o cliente não informou. Estado atual: '+cur;
+    const prompt=ins+'\n\nMensagem do cliente: '+(t||'(apenas foto)');
+    const resp=await fetch('/api/gerar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt,imagem:imagemBase64})});
+    const jj=await resp.json();if(!resp.ok)throw new Error(jj.erro||jj.error||'erro');
+    let rrr=jj.texto||'';const mmm=rrr.match(/\{[\s\S]*\}/);if(mmm)rrr=mmm[0];rrr=rrr.replace(/```json|```/g,'').trim();
+    const r=JSON.parse(rrr);
   const set=(id,v,m)=>{if(typeof v=='string'&&v.trim())$(id).value=v.trim().slice(0,m)};
   set('nome',r.nome,40);set('oferta',r.oferta,60);set('preco',r.preco,24);set('cta',r.cta,30);set('desc',r.desc,300);set('acao',r.acao,300);set('roteiro',r.roteiro,300);
   const si=STY.findIndex(s=>s.n==r.estilo);if(si>=0&&si!=S.style){S.style=si;build()}
   draw(2.5);w.textContent=(r.resposta||'Pronto! Preenchi os dados do vídeo.')+'\n\nQuando estiver bom, clique em “Gerar vídeo”.'
- }catch(e){w.textContent='Não consegui usar o assistente agora. Abra “Ajustar os textos manualmente” aqui embaixo e preencha os campos.';const d=document.querySelector('#app details');if(d)d.open=true}
+ }catch(e){w.textContent='Não consegui usar o assistente agora: '+e.message+'. Abra “Ajustar os textos manualmente” aqui embaixo e preencha os campos.';const d=document.querySelector('#app details');if(d)d.open=true}
  busy=false;$('csend').disabled=false;chat.scrollTop=chat.scrollHeight}
 $('csend').onclick=send;cin.onkeydown=e=>{if(e.key=='Enter'&&!e.shiftKey){e.preventDefault();send()}};
 })();
 </script><script>
 (()=>{
 const CK='cv_cfg',CUSTO={anim:1,ia:3};
-// ===== CONFIGURAÇÃO DO VÍDEO COM IA =====
-// ligada: mostra a opção "Vídeo com IA" para os clientes.
-// servidor: deixe vazio para usar o /api/gerar do próprio site (Vercel). Só preencha se usar o servidor com ffmpeg.
 const CONFIG_IA={ligada:true,servidor:''};
 let cfg={url:CONFIG_IA.servidor,on:CONFIG_IA.ligada},mode='anim';
 try{cfg=Object.assign(cfg,JSON.parse(localStorage.getItem(CK)||'{}'))}catch(e){}
@@ -277,61 +269,6 @@ const ready=()=>cfg.on&&(!cfg.url||/^https:\/\//.test(cfg.url)),base=()=>cfg.url
 function modes(){const r=ready();if(!r)mode='anim';
  $('modes').innerHTML=`<button class="opt" aria-pressed="${mode=='anim'}" data-m="anim">Animação rápida<small>${CUSTO.anim} crédito · feita na hora</small></button><button class="opt" aria-pressed="${mode=='ia'}" data-m="ia">Vídeo com IA ${r?'':'🔒'}<small>${r?CUSTO.ia+' créditos · movimento real':'em breve'}</small></button>`;
  document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{if(b.dataset.m=='ia'&&!ready()){ask('Vídeo com IA em breve','Estamos preparando a animação com movimento real. Por enquanto, use a animação rápida.');return}mode=b.dataset.m;modes()})}
-async function viaServidor(){
- if(S.busy)return;if(S.credits<CUSTO.ia){ask('Créditos insuficientes','O vídeo com IA usa '+CUSTO.ia+' créditos. Use a animação rápida ou renove a assinatura.');return}
- S.busy=true;$('gen').disabled=true;$('dl').style.display='none';vid.style.display='none';cv.style.display='';const m=$('msg');m.textContent='Enviando para o servidor de vídeo…';
- try{let foto=null;const P=window.PH;if(P){const c=document.createElement('canvas'),k=Math.min(1,1024/Math.max(P.width,P.height));c.width=P.width*k;c.height=P.height*k;c.getContext('2d').drawImage(P,0,0,c.width,c.height);foto=c.toDataURL('image/jpeg',.85)}
-  const f=FMT[S.fmt],b=base(),body={foto,nome:$('nome').value,oferta:$('oferta').value,preco:$('preco').value,cta:$('cta').value,descricao:$('desc').value,instrucao:$('acao').value,narracao:$('roteiro').value||[$('oferta').value,$('preco').value,$('cta').value].filter(Boolean).join('. '),voz:'pt-BR',estilo:STY[S.style].n,formato:{largura:f.w,altura:f.h}};
-  const r=await fetch(b+'/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok)throw new Error('http '+r.status);const {id}=await r.json();
-  for(let i=0;i<120;i++){await new Promise(z=>setTimeout(z,3000));const s=await (await fetch(b+'/jobs/'+id)).json();
-   if(s.status=='erro')throw new Error(s.mensagem||'erro');
-   const p=s.progresso||Math.min(90,i*3);$('prog').style.width=p+'%';m.textContent='Criando seu vídeo com IA… '+Math.round(p)+'%';
-   if(s.status=='pronto'){const vb=await (await fetch(s.video_url)).blob();S.blob=vb;S.mime=vb.type||'video/mp4';S.credits-=CUSTO.ia;vid.src=URL.createObjectURL(vb);vid.style.display='block';cv.style.display='none';$('prog').style.width='100%';finish();status();return}}
-  throw new Error('tempo esgotado')}
- catch(e){m.textContent='Não deu certo gerar com IA. Seus créditos não foram usados. Tente de novo em instantes.'}
- finally{S.busy=false;$('gen').disabled=false}}
-const PAL={'Moderno':{t:'#fff',p:'#FFD23F',c:'rgba(11,18,54,.62)',b:'#22E1FF',bt:'#04102B'},'Promoção':{t:'#fff',p:'#FFE14D',c:'rgba(229,23,63,.88)',b:'#FFB800',bt:'#3A0A0A'},'Elegante':{t:'#F5D98A',p:'#F5D98A',c:'rgba(0,0,0,.68)',b:'#F5D98A',bt:'#111'}};
-function faixa(txt,cy,fs,cor,fundo,u){if(!txt)return;const W=cv.width;cx.font=`800 ${fs}px Sora,sans-serif`;while(fs>16&&cx.measureText(txt).width>W*.88-28*u){fs-=2;cx.font=`800 ${fs}px Sora,sans-serif`}
- const w=cx.measureText(txt).width+28*u,h=fs*1.3;cx.fillStyle=fundo;cx.beginPath();cx.roundRect(W/2-w/2,cy-h/2,w,h,12*u);cx.fill();cx.fillStyle=cor;cx.textAlign='center';cx.textBaseline='middle';cx.fillText(txt,W/2,cy+fs*.04)}
-// Desenha um quadro: vídeo da IA preenchendo a tela + nome, oferta, PREÇO e botão por cima.
-function drawIA(v,t){const W=cv.width,H=cv.height,u=Math.min(W,H)/540,p=PAL[STY[S.style].n]||PAL.Moderno,r=Math.max(W/v.videoWidth,H/v.videoHeight),w=v.videoWidth*r,h=v.videoHeight*r;
- cx.globalAlpha=1;cx.drawImage(v,(W-w)/2,(H-h)/2,w,h);
- faixa($('nome').value,H*.07,34*u,p.t,p.c,u);
- if(t>.5)faixa($('oferta').value,H*.6,36*u,p.t,p.c,u);
- if(t>1.2)faixa($('preco').value,H*.73,72*u,p.p,p.c,u);
- if(t>2.2)faixa($('cta').value,H*.88,30*u,p.bt,p.b,u)}
-// Chama /api/gerar duas vezes (vídeo e voz), junta tudo no navegador e entrega um arquivo só com imagem + áudio.
-async function viaApi(){
- if(S.busy)return;if(S.credits<CUSTO.ia){ask('Créditos insuficientes','O vídeo com IA usa '+CUSTO.ia+' créditos. Use a animação rápida ou renove a assinatura.');return}
- S.busy=true;$('gen').disabled=true;$('dl').style.display='none';vid.style.display='none';cv.style.display='';const m=$('msg'),pr=$('prog');let ac,uv,ua;
- const pedir=async(tipo,prompt)=>{const r=await fetch('/api/gerar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,tipo})});
-  if(!r.ok){let e='';try{e=(await r.json()).erro}catch(x){}throw new Error(e||'erro '+r.status)}return r.blob()};
- try{m.textContent='Criando o vídeo e a voz… pode levar alguns minutos. Não feche esta página.';pr.style.width='15%';
-  const nar=$('roteiro').value||[$('oferta').value,$('preco').value,$('cta').value].filter(Boolean).join('. ');
-  const pv='Vídeo curto de propaganda, sem letras na imagem. '+[$('acao').value,$('nome').value,$('oferta').value,$('desc').value].filter(Boolean).join('. ');
-  const [vb,ab]=await Promise.all([pedir('video',pv),pedir('audio',nar)]);
-  pr.style.width='60%';m.textContent='Juntando imagem, voz e preço…';
-  uv=URL.createObjectURL(vb);ua=URL.createObjectURL(ab);
-  const v=document.createElement('video');v.src=uv;v.muted=true;v.loop=true;v.playsInline=true;const a=new Audio(ua);
-  await Promise.all([new Promise((ok,er)=>{v.onloadeddata=ok;v.onerror=()=>er(new Error('o vídeo recebido não abriu'))}),new Promise((ok,er)=>{a.onloadedmetadata=ok;a.onerror=()=>er(new Error('o áudio recebido não abriu'))})]);
-  const dur=Math.min(40,Math.max(5,(isFinite(a.duration)?a.duration:5)+.4));size();
-  ac=new (window.AudioContext||window.webkitAudioContext)();const dest=ac.createMediaStreamDestination();ac.createMediaElementSource(a).connect(dest);
-  const mimes=['video/mp4;codecs=avc1,mp4a.40.2','video/webm;codecs=vp9,opus','video/webm'];S.mime=mimes.find(x=>MediaRecorder.isTypeSupported(x))||'';
-  const rec=new MediaRecorder(new MediaStream([...cv.captureStream(30).getVideoTracks(),...dest.stream.getAudioTracks()]),S.mime?{mimeType:S.mime,videoBitsPerSecond:4e6}:{}),ch=[];
-  rec.ondataavailable=e=>e.data.size&&ch.push(e.data);const fim=new Promise(ok=>rec.onstop=ok);
-  await v.play();await ac.resume();rec.start();await a.play();const t0=performance.now();
-  await new Promise(ok=>{(function loop(){const t=(performance.now()-t0)/1000;drawIA(v,t);pr.style.width=(60+Math.min(40,t/dur*40))+'%';if(t<dur)requestAnimationFrame(loop);else ok()})()});
-  rec.stop();await fim;S.blob=new Blob(ch,{type:rec.mimeType});S.mime=rec.mimeType;S.credits-=CUSTO.ia;
-  vid.src=URL.createObjectURL(S.blob);vid.style.display='block';cv.style.display='none';pr.style.width='100%';finish();status()}
- catch(e){m.textContent='Não deu certo: '+(e.message||'erro')+'. Seus créditos não foram usados.'}
- finally{try{ac&&ac.close()}catch(x){}[uv,ua].forEach(x=>x&&URL.revokeObjectURL(x));S.busy=false;$('gen').disabled=false}}
-const remoto=()=>cfg.url?viaServidor():viaApi();
-const o2=$('gen').onclick;$('gen').onclick=()=>{if(mode=='ia'&&ready()){if($('auth').textContent!='Sair'){openLogin('up');return}remoto()}else o2()};
-$('adm').onclick=()=>{$('aurl').value=cfg.url;$('aon').checked=cfg.on;am('');admd.showModal()};
-$('asave').onclick=()=>{const u=$('aurl').value.trim(),on=$('aon').checked;if(on&&u&&!/^https:\/\//.test(u)){am('O endereço deve começar com https:// (ou deixe em branco para usar o /api/gerar do próprio site).');return}
- cfg={url:u,on};try{localStorage.setItem(CK,JSON.stringify(cfg))}catch(e){}modes();am(on?'Salvo. Os clientes já veem a opção “Vídeo com IA”.':'Salvo. A geração com IA está desligada.')};
-$('atest').onclick=async()=>{const u=$('aurl').value.trim().replace(/\/$/,'');if(!u){am('Sem endereço: o site usa o /api/gerar dele mesmo.');return}if(!/^https:\/\//.test(u)){am('Informe o endereço começando com https://');return}am('Testando…');
- try{const r=await fetch(u+'/saude');am(r.ok?'Conexão funcionando.':'O servidor respondeu com erro '+r.status+'.')}catch(e){am('Não foi possível conectar. Nesta página de demonstração, conexões com outros sites são bloqueadas. Quando o site estiver no seu servidor, o teste funciona.')}};
 modes();
 })();
 </script></body></html>
