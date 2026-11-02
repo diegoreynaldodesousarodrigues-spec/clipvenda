@@ -5,7 +5,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3f6ff;--panel:#fff;--ink:#0c1433;--mut:#5a6591;--line:#d9e0f7;--ac:#4a4dff;--ac2:#00c2a8;--warn:#ff7a45;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#080d24;--panel:#111940;--ink:#eef1ff;--mut:#9aa6d8;--line:#232d62;--ac:#7b86ff;--ac2:#2de2c4}}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Sora,system-ui,sans-serif;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;background-attachment:fixed}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
@@ -45,7 +44,6 @@ video{display:none}
 dialog{border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--ink);max-width:420px}
 dialog::backdrop{background:rgba(5,8,26,.6)}
 footer{color:var(--mut);font-size:13px;padding:20px 0 40px}
-</style><style>
 :root:root:root{color-scheme:dark;--bg:#050816;--panel:rgba(14,20,52,.66);--ink:#eaf0ff;--mut:#9aa8d8;--line:rgba(125,145,255,.24);--ac:#6b7bff;--ac2:#22e1ff}
 body{background-image:radial-gradient(60% 45% at 12% 0%,rgba(107,123,255,.38),transparent 70%),radial-gradient(45% 35% at 92% 8%,rgba(34,225,255,.24),transparent 70%),linear-gradient(rgba(125,145,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(125,145,255,.07) 1px,transparent 1px);background-size:auto,auto,40px 40px,40px 40px}
 .logo{font-size:22px;letter-spacing:-.02em}.logo i{background:linear-gradient(120deg,#8a98ff,#22e1ff);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -71,71 +69,61 @@ h2{font-size:clamp(24px,4vw,34px);letter-spacing:-.02em;margin:36px 0 4px}
 .plan.pro::before{content:"Mais escolhido";position:absolute;top:-12px;right:18px;background:linear-gradient(135deg,#6b7bff,#22e1ff);color:#04102b;font-size:12px;font-weight:800;padding:3px 12px;border-radius:99px}
 .plan li::marker{color:var(--ac2)}
 dialog{background:#0b1236;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.chat{height:270px;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(4,8,24,.55)}.m{max-width:88%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.5;white-space:pre-wrap}.m.a{background:rgba(107,123,255,.2);align-self:flex-start;border-bottom-left-radius:4px}.m.u{background:linear-gradient(135deg,#6b7bff,#22b8ff);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}.m img{max-width:150px;border-radius:10px;display:block;margin-bottom:6px}.cbar{display:flex;gap:8px;margin-top:10px;align-items:flex-end}#app #cin{min-height:56px;height:56px;flex:1;resize:none}.cbar button{padding:14px 16px}#prev:not(:empty){margin-top:10px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut)}#prev img{height:52px;border-radius:8px}#prev button{padding:4px 10px;font-size:13px}
+#app input,#app textarea{padding:15px 16px;font-size:17px;border-radius:12px}#app textarea{min-height:112px;resize:vertical;line-height:1.5}#app .card label{font-size:15px;margin-top:16px}
+#acct{margin:0 0 10px}#acct .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0}#acct .g>div{border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(4,8,24,.5)}#acct .g small{color:var(--mut);display:block;font-size:13px}#acct .g b{font-size:20px}#acct ul{margin:8px 0 0;padding-left:18px;color:var(--mut);font-size:14px}.err{color:#ff8a8a;font-size:14px;min-height:20px;margin:6px 0 0}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 </style></head><body>
 <div class="w">
 <header><div class="logo">Clip<i>Venda</i></div>
-<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="pill" id="status" aria-live="polite"></div><button class="ghost" id="auth" style="padding:8px 16px">Entrar</button></div></header>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><div class="pill" id="status"></div><button class="ghost" id="auth" style="padding:8px 16px">Entrar</button></div></header>
 <h1>Seu vídeo de propaganda pronto em 3 passos</h1>
 <p class="lead">Escreva o que você vende, escolha o visual e baixe o vídeo para postar no Instagram, TikTok, WhatsApp ou YouTube. Sem precisar saber editar.</p>
 <button onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Começar teste grátis</button>
 <div class="chips"><span>Sem saber editar</span><span>Pronto em 6 segundos</span><span>Baixe e poste</span></div>
 <div class="app" id="app">
 <div class="card">
- <div class="step"><div class="n">1</div><div style="flex:1"><h3>Converse e envie a foto do produto</h3><p class="hint">Anexe a foto e escreva do seu jeito o que você vende. O assistente preenche tudo para você.</p>
-<style>.chat{height:270px;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(4,8,24,.55)}.m{max-width:88%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.5;white-space:pre-wrap}.m.a{background:rgba(107,123,255,.2);align-self:flex-start;border-bottom-left-radius:4px}.m.u{background:linear-gradient(135deg,#6b7bff,#22b8ff);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}.m img{max-width:150px;border-radius:10px;display:block;margin-bottom:6px}.cbar{display:flex;gap:8px;margin-top:10px;align-items:flex-end}#app #cin{min-height:56px;height:56px;flex:1;resize:none}.cbar button{padding:14px 16px}#prev:not(:empty){margin-top:10px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut)}#prev img{height:52px;border-radius:8px}#prev button{padding:4px 10px;font-size:13px}</style>
-<div class="chat" id="chat" aria-live="polite"><div class="m a">Oi! Anexe uma foto do seu produto e me conte o que você vende, o preço e o que o cliente deve fazer. Pode escrever do seu jeito.</div></div>
+ <div class="step"><div class="n">1</div><div style="flex:1"><h3>Converse e envie a foto do produto</h3><p class="hint">Anexe a foto e escreva do seu jeito o que você vende.</p>
+<div class="chat" id="chat"><div class="m a">Oi! Anexe uma foto do seu produto e me conte o que você vende, o preço e o que o cliente deve fazer.</div></div>
 <div id="prev"></div>
-<div class="cbar"><button class="ghost" id="att" type="button" aria-label="Anexar foto do produto">📎 Foto</button><input type="file" id="file" accept="image/*" hidden><textarea id="cin" placeholder="Ex.: Vendo pão artesanal, 2 por R$ 5. Quero um vídeo chamando para o WhatsApp" aria-label="Mensagem"></textarea><button id="csend" type="button">Enviar</button></div>
+<div class="cbar"><button class="ghost" id="att" type="button">📎 Foto</button><input type="file" id="file" accept="image/*" hidden><textarea id="cin" placeholder="Ex.: Vendo pão artesanal, 2 por R$ 5. Quero um vídeo chamando para o WhatsApp"></textarea><button id="csend" type="button">Enviar</button></div>
 <details style="margin-top:14px"><summary style="cursor:pointer;color:var(--mut);font-size:14px">Ajustar os textos manualmente</summary>
-  <style>#app input,#app textarea{padding:15px 16px;font-size:17px;border-radius:12px}#app textarea{min-height:112px;resize:vertical;line-height:1.5}#app .card label{font-size:15px;margin-top:16px}</style><label for="nome">Nome do produto ou loja</label><input id="nome" value="Padaria Sabor da Vila" maxlength="40">
-  <label for="oferta">Qual é a oferta?</label><input id="oferta" value="Pão quentinho toda manhã" maxlength="60">
-  <label for="preco">Preço ou desconto</label><input id="preco" value="2 por R$ 5,00" maxlength="24">
-  <label for="cta">O que o cliente deve fazer?</label><input id="cta" value="Peça pelo WhatsApp" maxlength="30"><label for="desc">Descreva seu produto</label><textarea id="desc" maxlength="300">Pães feitos na hora, com fermentação natural. Entrega grátis no bairro.</textarea><label for="acao">O que o vídeo deve mostrar ou fazer?</label><textarea id="acao" maxlength="300">Mostrar o pão saindo do forno e terminar chamando o cliente para pedir.</textarea><label for="roteiro">Texto da narração (o que a voz vai falar)</label><textarea id="roteiro" maxlength="300">Pão quentinho toda manhã na Padaria Sabor da Vila. Dois por cinco reais. Peça pelo WhatsApp!</textarea></details></div></div>
- <div class="step"><div class="n">2</div><div style="flex:1"><h3>Escolha o visual e o tamanho</h3><p class="hint">O tamanho muda conforme a rede social.</p>
-  <div class="opts" id="styles"></div><div style="height:10px"></div><div class="opts" id="fmts"></div><div style="height:10px"></div><div class="opts" id="modes"></div></div></div>
+<label for="nome">Nome do produto ou loja</label><input id="nome" value="Padaria Sabor da Vila" maxlength="40">
+<label for="oferta">Qual é a oferta?</label><input id="oferta" value="Pão quentinho toda manhã" maxlength="60">
+<label for="preco">Preço ou desconto</label><input id="preco" value="2 por R$ 5,00" maxlength="24">
+<label for="cta">O que o cliente deve fazer?</label><input id="cta" value="Peça pelo WhatsApp" maxlength="30"><label for="desc">Descreva seu produto</label><textarea id="desc" maxlength="300">Pães feitos na hora, com fermentação natural. Entrega grátis no bairro.</textarea><label for="acao">O que o vídeo deve mostrar ou fazer?</label><textarea id="acao" maxlength="300">Mostrar o pão saindo do forno e terminar chamando o cliente para pedir.</textarea><label for="roteiro">Texto da narração</label><textarea id="roteiro" maxlength="300">Pão quentinho toda manhã na Padaria Sabor da Vila. Dois por cinco reais. Peça pelo WhatsApp!</textarea></details></div></div>
+ <div class="step"><div class="n">2</div><div style="flex:1"><h3>Escolha o visual e o tamanho</h3><div class="opts" id="styles"></div><div style="height:10px"></div><div class="opts" id="fmts"></div><div style="height:10px"></div><div class="opts" id="modes"></div></div></div>
  <div class="step"><div class="n">3</div><div style="flex:1"><h3>Crie seu vídeo</h3><p class="hint">Leva cerca de 6 segundos. Gasta 1 crédito.</p>
   <button id="gen">Gerar vídeo</button><div class="bar"><div id="prog"></div></div><p class="msg" id="msg"></p></div></div>
 </div>
 <div class="card">
  <h3 style="margin-top:0">Pré-visualização</h3>
  <div class="stage"><canvas id="cv"></canvas><video id="vid" controls playsinline></video></div>
- <div id="dl" style="display:none;margin-top:14px">
-  <label for="dfmt">Baixar como</label>
-  <select id="dfmt"></select>
-  <p class="hint" id="dhint" style="margin-top:8px"></p>
-  <button id="dbtn" style="width:100%">Baixar vídeo</button>
- </div>
+ <div id="dl" style="display:none;margin-top:14px"><label for="dfmt">Baixar como</label><select id="dfmt"></select><p class="hint" id="dhint" style="margin-top:8px"></p><button id="dbtn" style="width:100%">Baixar vídeo</button></div>
 </div>
 </div>
-<style>#acct{margin:0 0 10px}#acct .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0}#acct .g>div{border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(4,8,24,.5)}#acct .g small{color:var(--mut);display:block;font-size:13px}#acct .g b{font-size:20px}#acct ul{margin:8px 0 0;padding-left:18px;color:var(--mut);font-size:14px}.err{color:#ff8a8a;font-size:14px;min-height:20px;margin:6px 0 0}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}</style>
-<section class="card" id="acct" hidden><h3 id="aname" style="margin:0"></h3>
-<div class="g"><div><small>Meu plano</small><b id="aplan"></b></div><div><small>Créditos deste mês</small><b id="acr"></b><div class="bar"><div id="abar"></div></div></div></div>
-<p class="hint" id="aexp"></p>
-<small style="color:var(--mut)">Meus últimos vídeos</small><ul id="ahist"></ul>
-<div class="row"><button class="ghost" id="asim">Simular fim do mês (demonstração)</button><button id="aren" style="display:none">Renovar assinatura</button><button class="ghost" id="aout">Sair da conta</button></div></section>
+<section class="card" id="acct" hidden><h3 id="aname" style="margin:0"></h3><div class="g"><div><small>Meu plano</small><b id="aplan"></b></div><div><small>Créditos deste mês</small><b id="acr"></b><div class="bar"><div id="abar"></div></div></div></div><p class="hint" id="aexp"></p><small style="color:var(--mut)">Meus últimos vídeos</small><ul id="ahist"></ul><div class="row"><button class="ghost" id="asim">Simular fim do mês</button><button id="aren" style="display:none">Renovar assinatura</button><button class="ghost" id="aout">Sair da conta</button></div></section>
 <h2 id="planos">Planos simples</h2>
 <div class="plans">
- <div class="card plan"><h3>Teste grátis</h3><div class="price">R$ 0</div><ul><li>3 vídeos para testar</li><li>Formato vertical (Stories e Reels)</li><li>Marca d’água ClipVenda</li></ul><button class="ghost" onclick="reset()">Reiniciar teste</button></div>
- <div class="card plan pro"><h3>Assinatura Pro</h3><div class="price">R$ 49 <small>/mês</small></div><ul><li>40 vídeos por mês</li><li>Todos os tamanhos: vertical, quadrado e horizontal</li><li>Sem marca d’água</li><li>Baixe em WebM, MP4 (quando o aparelho permitir) e capa em PNG</li><li>Créditos renovados todo mês, sem acumular para o mês seguinte</li></ul><button onclick="subscribe()">Assinar Pro</button></div>
+ <div class="card plan"><h3>Teste grátis</h3><div class="price">R$ 0</div><ul><li>3 vídeos para testar</li><li>Formato vertical</li><li>Marca d’água</li></ul><button class="ghost" onclick="reset()">Reiniciar teste</button></div>
+ <div class="card plan pro"><h3>Assinatura Pro</h3><div class="price">R$ 49 <small>/mês</small></div><ul><li>40 vídeos por mês</li><li>Todos os tamanhos</li><li>Sem marca d’água</li></ul><button onclick="subscribe()">Assinar Pro</button></div>
 </div>
-<footer>Demonstração: o pagamento é simulado.<br><button class="ghost" id="adm" style="margin-top:12px;padding:8px 14px;font-size:13px">Painel do dono</button></footer>
-<dialog id="admd" style="max-width:500px"><h3 style="margin-top:0">Painel do dono</h3><p class="hint">Deixe vazio para usar o /api/gerar do próprio site</p><label for="aurl">Endereço do servidor de vídeo</label><input id="aurl" placeholder="Deixe vazio para usar o /api/gerar do próprio site"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" id="aon" style="width:auto"> Ligar geração com IA para os clientes</label><p class="err" id="amsg" role="status" style="color:var(--mut)"></p><div class="row"><button class="ghost" id="atest" type="button">Testar conexão</button><button id="asave" type="button">Salvar</button><button class="ghost" type="button" onclick="admd.close()">Fechar</button></div></dialog>
+<footer>Demonstração: o pagamento é simulado.</footer>
+<dialog id="login"><h3 style="margin-top:0" id="lt"></h3><form id="lform"><div><label for="lname">Seu nome</label><input id="lname" maxlength="30"></div><label for="lmail">E-mail</label><input id="lmail" type="email" required><label for="lpass">Senha (mínimo 6)</label><input id="lpass" type="password" required><p class="err" id="lerr"></p><button id="lsub" style="width:100%"></button></form><div class="row" style="justify-content:space-between"><button class="ghost" id="lsw" type="button"></button><button class="ghost" type="button" onclick="login.close()">Fechar</button></div></dialog>
+<dialog id="dlg"><h3 style="margin-top:0" id="dt"></h3><p id="dp"></p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="ghost" onclick="dlg.close()">Agora não</button><button id="dok">Ver planos</button></div></dialog>
 </div>
-<dialog id="login"><h3 style="margin-top:0" id="lt"></h3><form id="lform" autocomplete="on"><div><label for="lname">Seu nome</label><input id="lname" maxlength="30" autocomplete="name"></div><label for="lmail">E-mail</label><input id="lmail" type="email" required autocomplete="email"><label for="lpass">Senha (mínimo 6 caracteres)</label><input id="lpass" type="password" required autocomplete="current-password"><p class="err" id="lerr" role="alert"></p><button id="lsub" style="width:100%"></button></form><div class="row" style="justify-content:space-between"><button class="ghost" id="lsw" type="button"></button><button class="ghost" type="button" onclick="login.close()">Fechar</button></div><p class="hint" style="margin:12px 0 0">Demonstração: sua conta fica salva só neste navegador.</p></dialog>
-<dialog id="dlg"><h3 style="margin-top:0" id="dt"></h3><p id="dp" style="color:var(--mut)"></p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="ghost" onclick="dlg.close()">Agora não</button><button id="dok">Ver planos</button></div></dialog>
 <script>
 const $=id=>document.getElementById(id);
 const S={pro:false,credits:3,style:0,fmt:0,blob:null,mime:'',busy:false};
 const STY=[{n:'Moderno',s:'Azul e ciano',c:['#1b2cff','#00c2a8'],t:'#fff'},{n:'Promoção',s:'Vermelho e amarelo',c:['#e5173f','#ffb800'],t:'#fff'},{n:'Elegante',s:'Preto e dourado',c:['#0a0a0a','#8a6a1f'],t:'#f5d98a'}];
-const FMT=[{n:'Vertical',s:'9:16 Stories, Reels, TikTok',w:540,h:960,free:1},{n:'Quadrado',s:'1:1 Feed',w:720,h:720},{n:'Horizontal',s:'16:9 YouTube',w:960,h:540}];
+const FMT=[{n:'Vertical',s:'9:16 Stories',w:540,h:960,free:1},{n:'Quadrado',s:'1:1 Feed',w:720,h:720},{n:'Horizontal',s:'16:9 YouTube',w:960,h:540}];
 const cv=$('cv'),cx=cv.getContext('2d'),vid=$('vid');
 let expDays=30;
-function status(){$('status').innerHTML=S.pro?`Plano Pro · <b>${S.credits}</b> créditos · expiram em ${expDays} dias`:`Teste grátis · <b>${S.credits}</b> de 3 vídeos`}
+function status(){$('status').innerHTML=S.pro?`Pro · <b>${S.credits}</b> créditos`:`Teste · <b>${S.credits}</b> de 3`}
 function build(){
  $('styles').innerHTML=STY.map((x,i)=>`<button class="opt" aria-pressed="${i==S.style}" data-s="${i}">${x.n}<small>${x.s}</small></button>`).join('');
  $('fmts').innerHTML=FMT.map((x,i)=>{const lk=!x.free&&!S.pro;return `<button class="opt" aria-pressed="${i==S.fmt}" data-f="${i}">${x.n} ${lk?'<span class="lock">🔒</span>':''}<small>${x.s}</small></button>`}).join('');
  document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{S.style=+b.dataset.s;build();draw(2.5)});
- document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{const f=FMT[+b.dataset.f];if(!f.free&&!S.pro){ask('Esse tamanho é do plano Pro','Com a assinatura você usa vertical, quadrado e horizontal.');return}S.fmt=+b.dataset.f;build();draw(2.5)});
+ document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{const f=FMT[+b.dataset.f];if(!f.free&&!S.pro){ask('Esse tamanho é do Pro','Assine para liberar');return}S.fmt=+b.dataset.f;build();draw(2.5)});
  status();size();
 }
 function size(){const f=FMT[S.fmt];cv.width=f.w;cv.height=f.h}
@@ -149,126 +137,130 @@ function draw(t){
  const nm=$('nome').value,of=$('oferta').value,pr=$('preco').value,ct=$('cta').value;
  if(sc==0){if(window.pic)pic();cx.font=`800 ${58*u}px Sora,sans-serif`;wrap(nm,W/2,window.PH?H*.82+off:H/2+off,W*.84,66*u)}
  if(sc==1){if(window.cover)cover(.3*a);cx.globalAlpha=Math.max(0,a);cx.font=`800 ${44*u}px Sora,sans-serif`;wrap(of,W/2,H*.4+off,W*.82,54*u);cx.font=`400 ${25*u}px Sora,sans-serif`;wrap($('desc').value.slice(0,110),W/2,H*.64+off,W*.78,34*u)}
- if(sc==2){cx.font=`800 ${60*u}px Sora,sans-serif`;wrap(pr,W/2,H*.42+off,W*.84,68*u);
-  const bw=Math.min(W*.8,420*u),bh=64*u,by=H*.62;cx.fillStyle=st.t;cx.beginPath();cx.roundRect(W/2-bw/2,by,bw,bh,bh/2);cx.fill();
-  cx.fillStyle=st.c[0];cx.font=`800 ${24*u}px Sora,sans-serif`;cx.fillText(ct,W/2,by+bh/2)}
+ if(sc==2){cx.font=`800 ${60*u}px Sora,sans-serif`;wrap(pr,W/2,H*.42+off,W*.84,68*u);const bw=Math.min(W*.8,420*u),bh=64*u,by=H*.62;cx.fillStyle=st.t;cx.beginPath();cx.roundRect(W/2-bw/2,by,bw,bh,bh/2);cx.fill();cx.fillStyle=st.c[0];cx.font=`800 ${24*u}px Sora,sans-serif`;cx.fillText(ct,W/2,by+bh/2)}
  cx.globalAlpha=1;
- if(!S.pro){cx.fillStyle='rgba(255,255,255,.75)';cx.font=`600 ${16*u}px Sora,sans-serif`;cx.fillText('Feito com ClipVenda · teste grátis',W/2,H-24*u)}
+ if(!S.pro){cx.fillStyle='rgba(255,255,255,.75)';cx.font=`600 ${16*u}px Sora,sans-serif`;cx.fillText('Feito com ClipVenda',W/2,H-24*u)}
 }
 function ask(t,p){$('dt').textContent=t;$('dp').textContent=p;dlg.showModal()}
 const dlg=$('dlg');$('dok').onclick=()=>{dlg.close();$('planos').scrollIntoView({behavior:'smooth'})};
-function subscribe(){S.pro=true;S.credits=40;expDays=30;S.fmt=S.fmt;$('msg').textContent='Assinatura ativa! Você ganhou 40 créditos válidos por este mês.';build();draw(2.5)}
+function subscribe(){S.pro=true;S.credits=40;expDays=30;$('msg').textContent='Assinatura ativa! 40 créditos.';build();draw(2.5)}
 function reset(){S.pro=false;S.credits=3;S.fmt=0;S.blob=null;$('dl').style.display='none';vid.style.display='none';cv.style.display='';build();draw(2.5)}
-$('gen').onclick=()=>{
+
+// ===== LINHA 1 CORRIGIDA - AGORA GERA VÍDEO REAL COM A FOTO =====
+$('gen').onclick=async ()=>{
  if(S.busy)return;
- if(S.credits<1){ask(S.pro?'Seus créditos deste mês acabaram':'Seu teste grátis acabou',S.pro?'Eles voltam na próxima renovação.':'Assine o Pro para continuar criando vídeos.');return}
- if(!window.MediaRecorder||!cv.captureStream){$('msg').textContent='Seu navegador não consegue gravar o vídeo. Abra no Chrome, Edge ou Safari atualizado.';return}
- S.busy=true;$('gen').disabled=true;$('dl').style.display='none';vid.style.display='none';cv.style.display='';$('msg').textContent='Criando seu vídeo… não feche esta página.';
+ if(S.credits<1){ask('Seus créditos acabaram','Assine o Pro');return}
+ 
+ // SE TEM FOTO ANEXADA, USA API DE VÍDEO REAL
+ const fotoInput = document.getElementById('file');
+ if(fotoInput && window.lastFile){
+   S.busy=true;$('gen').disabled=true;
+   $('msg').textContent='Gerando sua propaganda com movimento real... pode levar 30s, não feche.';
+   $('prog').style.width='30%';
+   try{
+     const fd = new FormData();
+     fd.append("file", window.lastFile);
+     fd.append("nome", $('nome').value);
+     fd.append("descricao", $('desc').value + " " + $('acao').value);
+     const res = await fetch("/api/videos",{method:"POST",body:fd});
+     const data = await res.json();
+     if(!res.ok) throw new Error(data.error||'erro');
+     vid.src = data.url;
+     vid.style.display='block';cv.style.display='none';
+     S.blob={};S.credits--;S.busy=false;$('gen').disabled=false;
+     $('prog').style.width='100%';finish();status();
+     return;
+   }catch(e){
+     $('msg').textContent='Erro no vídeo real: '+e.message+' - usando animação rápida';
+     S.busy=false;$('gen').disabled=false;
+   }
+ }
+
+ // SE NÃO TEM FOTO, USA ANIMAÇÃO RÁPIDA ANTIGA
+ if(!window.MediaRecorder||!cv.captureStream){$('msg').textContent='Seu navegador não grava vídeo.';return}
+ S.busy=true;$('gen').disabled=true;$('dl').style.display='none';vid.style.display='none';cv.style.display='';$('msg').textContent='Criando seu vídeo…';
  const mimes=['video/mp4;codecs=avc1','video/webm;codecs=vp9','video/webm'];S.mime=mimes.find(m=>MediaRecorder.isTypeSupported(m))||'';
  const rec=new MediaRecorder(cv.captureStream(30),S.mime?{mimeType:S.mime,videoBitsPerSecond:4e6}:{}),ch=[];
  rec.ondataavailable=e=>e.data.size&&ch.push(e.data);
- rec.onstop=()=>{S.blob=new Blob(ch,{type:rec.mimeType});S.mime=rec.mimeType;S.credits--;S.busy=false;$('gen').disabled=false;
-  vid.src=URL.createObjectURL(S.blob);vid.style.display='block';cv.style.display='none';finish();status()};
- const el=document.getElementById('textoProduto'),texto=el?el.value:[$('nome').value,$('oferta').value,$('preco').value,$('cta').value].filter(Boolean).join('. ');
- if('speechSynthesis' in window&&texto){const voz=new SpeechSynthesisUtterance(texto);voz.lang='pt-BR';voz.rate=1.1;speechSynthesis.speak(voz)}
+ rec.onstop=()=>{S.blob=new Blob(ch,{type:rec.mimeType});S.mime=rec.mimeType;S.credits--;S.busy=false;$('gen').disabled=false;vid.src=URL.createObjectURL(S.blob);vid.style.display='block';cv.style.display='none';finish();status()};
  const t0=performance.now();rec.start();
  (function loop(){const t=(performance.now()-t0)/1000;draw(Math.min(t,5.99));$('prog').style.width=Math.min(100,t/6*100)+'%';if(t<6)requestAnimationFrame(loop);else rec.stop()})();
 };
+
 function finish(){
  $('msg').textContent='Pronto! Confira o vídeo e baixe abaixo.';
  const mp4=S.mime.includes('mp4'),ext=mp4?'mp4':'webm';
- const o=[[ext,`Vídeo ${ext.toUpperCase()} (recomendado)`],['png','Imagem de capa (PNG)']];
- $('dfmt').innerHTML=o.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('');
- const h=()=>{$('dhint').textContent=$('dfmt').value=='png'?'Ideal para usar como capa ou post de feed.':mp4?'MP4 funciona em Instagram, TikTok, WhatsApp e YouTube.':'WebM abre no computador e no YouTube. Para Instagram ou WhatsApp, converta para MP4 em um conversor gratuito.'};h();$('dfmt').onchange=h;
+ $('dfmt').innerHTML=`<option value="${ext}">Vídeo ${ext.toUpperCase()}</option><option value="png">Imagem de capa PNG</option>`;
  $('dl').style.display='block';
 }
 $('dbtn').onclick=()=>{
  const v=$('dfmt').value,a=document.createElement('a'),base='clipvenda-'+$('nome').value.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
- if(v=='png'){draw(2.5);a.href=cv.toDataURL('image/png');a.download=base+'.png';cv.style.display='';}else{a.href=URL.createObjectURL(S.blob);a.download=base+'.'+v}
+ if(v=='png'){draw(2.5);a.href=cv.toDataURL('image/png');a.download=base+'.png';cv.style.display='';}else{a.href=vid.src;a.download=base+'.'+v}
  document.body.appendChild(a);a.click();a.remove();
 };
 build();draw(2.5);['nome','oferta','preco','cta','desc','acao'].forEach(i=>$(i).oninput=()=>{if(!S.busy&&cv.style.display!='none')draw(2.5)});
-document.fonts&&document.fonts.ready.then(()=>draw(2.5));
-</script><script>
+</script>
+<script>
 (()=>{
+const $=id=>document.getElementById(id);
 const K='cv_users',SK='cv_sess',DAY=864e5,lg=$('login');let U=null,mode='in';
 const ld=()=>{try{return JSON.parse(localStorage.getItem(K)||'{}')}catch(e){return{}}};
 const sv=()=>{try{if(U){const a=ld();a[U.email]=U;localStorage.setItem(K,JSON.stringify(a))}}catch(e){}};
 const hs=async s=>{try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return btoa(s)}};
 const days=()=>Math.max(0,Math.ceil((U.exp-Date.now())/DAY));
 function expire(){if(U&&U.pro&&Date.now()>U.exp){U.credits=0;U.expired=true}}
-window.status=function(){const el=$('status');
- if(!U){el.textContent='Entre para criar seus vídeos';return}
- U.pro=S.pro;U.credits=S.credits;sv();
- el.innerHTML=U.pro?(U.expired?'Plano Pro · créditos expirados':`Plano Pro · <b>${U.credits}</b> créditos · expiram em ${days()} dias`):`Teste grátis · <b>${U.credits}</b> de 3 vídeos`};
-window.renderAcct=function(){const a=$('acct');a.hidden=!U;if(!U)return;
- $('aname').textContent='Olá, '+U.name;$('aplan').textContent=U.pro?'Pro · R$ 49/mês':'Teste grátis';
- const max=U.pro?40:3;$('acr').textContent=U.credits+' de '+max;$('abar').style.width=(U.credits/max*100)+'%';
- $('aexp').textContent=U.pro?(U.expired?'Seus créditos expiraram. Renove a assinatura para receber 40 novos.':`Sua assinatura renova em ${days()} dias. Os créditos que sobrarem expiram na renovação.`):'Assine o Pro para liberar todos os tamanhos e tirar a marca d’água.';
- $('ahist').innerHTML=U.hist.length?U.hist.map(h=>`<li>${h.n.replace(/[<>&]/g,'')} · ${h.f} · ${h.s} · ${h.d}</li>`).join(''):'<li>Você ainda não criou vídeos.</li>';
- $('asim').style.display=U.pro&&!U.expired?'':'none';$('aren').style.display=U.pro&&U.expired?'':'none'};
-window.subscribe=function(){if(!U){openLogin('up');return}S.pro=true;S.credits=40;U.exp=Date.now()+30*DAY;U.expired=false;$('msg').textContent='Assinatura ativa! Você ganhou 40 créditos válidos por este mês.';build();draw(2.5);renderAcct();$('acct').scrollIntoView({behavior:'smooth'})};
+window.status=function(){const el=$('status');if(!U){el.textContent='Entre para criar';return}U.pro=S.pro;U.credits=S.credits;sv();el.innerHTML=U.pro?`Pro · <b>${U.credits}</b>`: `Teste · <b>${U.credits}</b> de 3`};
+window.renderAcct=function(){const a=$('acct');a.hidden=!U;if(!U)return;$('aname').textContent='Olá, '+U.name;$('aplan').textContent=U.pro?'Pro':'Teste';const max=U.pro?40:3;$('acr').textContent=U.credits+' de '+max;$('abar').style.width=(U.credits/max*100)+'%';$('aexp').textContent=U.pro?'Renova em '+days()+' dias':'Assine o Pro';$('ahist').innerHTML=U.hist.length?U.hist.map(h=>`<li>${h.n}</li>`).join(''):'<li>Nenhum vídeo</li>'};
+window.subscribe=function(){if(!U){openLogin('up');return}S.pro=true;S.credits=40;U.exp=Date.now()+30*DAY;U.expired=false;build();draw(2.5);renderAcct()};
 window.reset=function(){S.pro=false;S.credits=3;S.fmt=0;S.blob=null;if(U)U.expired=false;$('dl').style.display='none';vid.style.display='none';cv.style.display='';build();draw(2.5);renderAcct()};
-const of=window.finish;window.finish=function(){of();if(U){U.hist.unshift({n:$('nome').value,f:FMT[S.fmt].n,s:STY[S.style].n,d:new Date().toLocaleDateString('pt-BR')});U.hist=U.hist.slice(0,8)}status();renderAcct()};
-const og=$('gen').onclick;$('gen').onclick=()=>{if(!U){openLogin('up');return}og()};
-function tab(){const i=mode=='in';$('lt').textContent=i?'Entrar na sua conta':'Criar conta grátis';$('lname').parentElement.style.display=i?'none':'';$('lsub').textContent=i?'Entrar':'Criar conta e ganhar 3 vídeos';$('lsw').textContent=i?'Ainda não tenho conta':'Já tenho conta';$('lerr').textContent='';$('lpass').autocomplete=i?'current-password':'new-password'}
+const of=window.finish;window.finish=function(){of();if(U){U.hist.unshift({n:$('nome').value});U.hist=U.hist.slice(0,8)}status();renderAcct()};
+function tab(){const i=mode=='in';$('lt').textContent=i?'Entrar':'Criar conta';$('lname').parentElement.style.display=i?'none':'';$('lsub').textContent=i?'Entrar':'Criar conta';$('lsw').textContent=i?'Ainda não tenho conta':'Já tenho conta';$('lerr').textContent='';}
 function openLogin(m){mode=m||'in';tab();lg.showModal()}window.openLogin=openLogin;
 $('lsw').onclick=()=>{mode=mode=='in'?'up':'in';tab()};
-$('lform').onsubmit=async e=>{e.preventDefault();const em=$('lmail').value.trim().toLowerCase(),pw=$('lpass').value,all=ld(),er=t=>$('lerr').textContent=t;
- if(pw.length<6){er('A senha precisa ter pelo menos 6 caracteres.');return}
- const hp=await hs(pw);
- if(mode=='up'){if(all[em]){er('Este e-mail já tem conta. Clique em “Já tenho conta”.');return}U={email:em,name:$('lname').value.trim()||em.split('@')[0],hp,pro:false,credits:3,exp:Date.now()+30*DAY,hist:[]}}
- else{const u=all[em];if(!u||u.hp!==hp){er('E-mail ou senha incorretos.');return}U=u}
- try{localStorage.setItem(SK,em)}catch(x){}lg.close();enter(true)};
-function enter(w){expire();S.pro=U.pro;S.credits=U.credits;S.fmt=0;sv();$('auth').textContent='Sair';build();draw(2.5);renderAcct();if(w)$('msg').textContent='Bem-vindo, '+U.name+'! Siga os passos para criar seu primeiro vídeo.'}
-function logout(){U=null;try{localStorage.removeItem(SK)}catch(e){}S.pro=false;S.credits=3;S.fmt=0;S.blob=null;$('dl').style.display='none';vid.style.display='none';cv.style.display='';$('auth').textContent='Entrar';$('msg').textContent='';build();draw(2.5);renderAcct()}
+$('lform').onsubmit=async e=>{e.preventDefault();const em=$('lmail').value.trim().toLowerCase(),pw=$('lpass').value,all=ld(),er=t=>$('lerr').textContent=t;if(pw.length<6){er('Mínimo 6');return}const hp=await hs(pw);if(mode=='up'){if(all[em]){er('Já tem conta');return}U={email:em,name:$('lname').value.trim()||em.split('@')[0],hp,pro:false,credits:3,exp:Date.now()+30*DAY,hist:[]}}else{const u=all[em];if(!u||u.hp!==hp){er('Senha errada');return}U=u}try{localStorage.setItem(SK,em)}catch(x){}lg.close();enter(true)};
+function enter(w){expire();S.pro=U.pro;S.credits=U.credits;S.fmt=0;sv();$('auth').textContent='Sair';build();draw(2.5);renderAcct();}
+function logout(){U=null;try{localStorage.removeItem(SK)}catch(e){}S.pro=false;S.credits=3;S.fmt=0;S.blob=null;$('dl').style.display='none';vid.style.display='none';cv.style.display='';$('auth').textContent='Entrar';build();draw(2.5);renderAcct()}
 $('auth').onclick=()=>U?logout():openLogin('in');$('aout').onclick=logout;
-$('asim').onclick=()=>{U.exp=Date.now()-1000;expire();S.credits=0;status();renderAcct();$('msg').textContent='Mês encerrado: os créditos que sobraram expiraram.'};
-$('aren').onclick=()=>{U.exp=Date.now()+30*DAY;U.expired=false;S.credits=40;status();renderAcct();$('msg').textContent='Assinatura renovada: 40 novos créditos.'};
 try{const em=localStorage.getItem(SK),u=em&&ld()[em];if(u){U=u;enter(false)}else{status()}}catch(e){status()}
 })();
-</script><script>
+</script>
+<script>
 (()=>{
 const chat=$('chat'),cin=$('cin'),fi=$('file'),pv=$('prev');let busy=false,pblob=null,purl='';window.PH=null;
 window.pic=function(){const im=window.PH;if(!im)return;const W=cv.width,H=cv.height,bw=W*.74,bh=H*.52,r=Math.min(bw/im.width,bh/im.height),w=im.width*r,h=im.height*r,x=(W-w)/2,y=H*.08+(bh-h)/2;cx.save();cx.beginPath();cx.roundRect(x,y,w,h,24);cx.clip();cx.drawImage(im,x,y,w,h);cx.restore()};
 window.cover=function(al){const im=window.PH;if(!im)return;const W=cv.width,H=cv.height,r=Math.max(W/im.width,H/im.height),w=im.width*r,h=im.height*r;cx.save();cx.globalAlpha=al;cx.drawImage(im,(W-w)/2,(H-h)/2,w,h);cx.restore()};
-function msg(t,c,img){const d=document.createElement('div');d.className='m '+c;if(img){const i=document.createElement('img');i.src=img;i.alt='Foto do produto';d.appendChild(i)}d.appendChild(document.createTextNode(t));chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d}
+function msg(t,c,img){const d=document.createElement('div');d.className='m '+c;if(img){const i=document.createElement('img');i.src=img;d.appendChild(i)}d.appendChild(document.createTextNode(t));chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d}
 $('att').onclick=()=>fi.click();
-fi.onchange=()=>{const f=fi.files[0];fi.value='';if(!f)return;const im=new Image();purl=URL.createObjectURL(f);
- im.onload=()=>{window.PH=im;const k=Math.min(1,768/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{pblob=b},'image/jpeg',.82);
-  pv.innerHTML='';const t=document.createElement('img');t.src=purl;t.alt='Foto anexada';const s=document.createElement('span');s.textContent='Foto anexada';const x=document.createElement('button');x.className='ghost';x.type='button';x.textContent='Remover';x.onclick=()=>{pblob=null;window.PH=null;pv.innerHTML='';draw(2.5)};pv.append(t,s,x);draw(0.5)};
- im.onerror=()=>msg('Não consegui abrir essa imagem. Tente uma foto em JPG ou PNG.','a');im.src=purl};
-async function send(){const t=cin.value.trim();if(busy||(!t&&!pblob))return;busy=true;$('csend').disabled=true;
- const blob=pblob,url=blob?purl:'';msg(t||'Segue a foto do produto.','u',url);cin.value='';pblob=null;pv.innerHTML='';
- const w=msg('Lendo as suas informações…','a');
+fi.onchange=()=>{const f=fi.files[0];if(!f)return;window.lastFile=f;const im=new Image();purl=URL.createObjectURL(f);
+ im.onload=()=>{window.PH=im;pv.innerHTML='';const t=document.createElement('img');t.src=purl;const s=document.createElement('span');s.textContent='Foto anexada';const x=document.createElement('button');x.className='ghost';x.type='button';x.textContent='Remover';x.onclick=()=>{window.lastFile=null;window.PH=null;pv.innerHTML='';draw(2.5)};pv.append(t,s,x);draw(0.5)};
+ im.src=purl};
+async function send(){const t=cin.value.trim();if(busy||(!t&&!window.lastFile))return;busy=true;$('csend').disabled=true;
+ const blob=window.lastFile,url=blob?purl:'';msg(t||'Segue a foto.','u',url);cin.value='';
+ const w=msg('Lendo...','a');
  try{
     let imagemBase64=null;
     if(blob){imagemBase64=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(blob);});}
-    const cur=JSON.stringify({nome:$('nome').value,oferta:$('oferta').value,preco:$('preco').value,cta:$('cta').value,desc:$('desc').value,acao:$('acao').value,roteiro:$('roteiro').value,estilo:STY[S.style].n});
-    const ins='Você é o assistente de uma ferramenta que cria vídeos curtos de propaganda para pequenos comerciantes brasileiros. Entenda o pedido e a foto do produto (se houver) e responda SOMENTE com JSON, sem markdown, neste formato: {"resposta":"mensagem curta e simpática em português, 1 a 3 frases, dizendo o que você entendeu e, se faltar algo importante como o preço, perguntando só isso","nome":"nome do produto ou loja, até 40 caracteres","oferta":"frase de oferta, até 60","preco":"preço ou desconto, até 24","cta":"chamada para ação, até 30","desc":"descrição atraente do produto, até 200","acao":"o que o vídeo deve mostrar","roteiro":"texto curto para a voz narrar no vídeo, em tom natural de propaganda, até 25 palavras","estilo":"Moderno, Promoção ou Elegante"}. Mantenha o valor atual de um campo quando o cliente não pediu mudança nele. Nunca invente um preço que o cliente não informou. Estado atual: '+cur;
-    const prompt=ins+'\n\nMensagem do cliente: '+(t||'(apenas foto)');
-    const resp=await fetch('/api/gerar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt,imagem:imagemBase64})});
-    const jj=await resp.json();if(!resp.ok)throw new Error(jj.erro||jj.error||'erro');
+    const cur=JSON.stringify({nome:$('nome').value,oferta:$('oferta').value,preco:$('preco').value,cta:$('cta').value,desc:$('desc').value});
+    const ins='Responda SOMENTE JSON: {"resposta":"mensagem curta","nome":"nome","oferta":"oferta","preco":"preço","cta":"cta","desc":"desc","acao":"acao","roteiro":"roteiro","estilo":"Moderno"} Estado: '+cur;
+    const resp=await fetch('/api/gerar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:ins+'\nMensagem:'+t,imagem:imagemBase64})});
+    const jj=await resp.json();if(!resp.ok)throw new Error(jj.erro||'erro');
     let rrr=jj.texto||'';const mmm=rrr.match(/\{[\s\S]*\}/);if(mmm)rrr=mmm[0];rrr=rrr.replace(/```json|```/g,'').trim();
     const r=JSON.parse(rrr);
   const set=(id,v,m)=>{if(typeof v=='string'&&v.trim())$(id).value=v.trim().slice(0,m)};
   set('nome',r.nome,40);set('oferta',r.oferta,60);set('preco',r.preco,24);set('cta',r.cta,30);set('desc',r.desc,300);set('acao',r.acao,300);set('roteiro',r.roteiro,300);
-  const si=STY.findIndex(s=>s.n==r.estilo);if(si>=0&&si!=S.style){S.style=si;build()}
-  draw(2.5);w.textContent=(r.resposta||'Pronto! Preenchi os dados do vídeo.')+'\n\nQuando estiver bom, clique em “Gerar vídeo”.'
- }catch(e){w.textContent='Não consegui usar o assistente agora: '+e.message+'. Abra “Ajustar os textos manualmente” aqui embaixo e preencha os campos.';const d=document.querySelector('#app details');if(d)d.open=true}
- busy=false;$('csend').disabled=false;chat.scrollTop=chat.scrollHeight}
+  draw(2.5);w.textContent=(r.resposta||'Pronto!')+'\nClique em Gerar vídeo.'
+ }catch(e){w.textContent='Erro: '+e.message}
+ busy=false;$('csend').disabled=false}
 $('csend').onclick=send;cin.onkeydown=e=>{if(e.key=='Enter'&&!e.shiftKey){e.preventDefault();send()}};
 })();
-</script><script>
+</script>
+<script>
 (()=>{
-const CK='cv_cfg',CUSTO={anim:1,ia:3};
-const CONFIG_IA={ligada:true,servidor:''};
-let cfg={url:CONFIG_IA.servidor,on:CONFIG_IA.ligada},mode='anim';
-try{cfg=Object.assign(cfg,JSON.parse(localStorage.getItem(CK)||'{}'))}catch(e){}
-const ready=()=>cfg.on&&(!cfg.url||/^https:\/\//.test(cfg.url)),base=()=>cfg.url.replace(/\/$/,''),am=t=>$('amsg').textContent=t;
-function modes(){const r=ready();if(!r)mode='anim';
- $('modes').innerHTML=`<button class="opt" aria-pressed="${mode=='anim'}" data-m="anim">Animação rápida<small>${CUSTO.anim} crédito · feita na hora</small></button><button class="opt" aria-pressed="${mode=='ia'}" data-m="ia">Vídeo com IA ${r?'':'🔒'}<small>${r?CUSTO.ia+' créditos · movimento real':'em breve'}</small></button>`;
- document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{if(b.dataset.m=='ia'&&!ready()){ask('Vídeo com IA em breve','Estamos preparando a animação com movimento real. Por enquanto, use a animação rápida.');return}mode=b.dataset.m;modes()})}
+const CK='cv_cfg';let cfg={url:'',on:true};try{cfg=Object.assign(cfg,JSON.parse(localStorage.getItem(CK)||'{}'))}catch(e){}
+let mode='anim';
+function modes(){const r=true; $('modes').innerHTML=`<button class="opt" aria-pressed="${mode=='anim'}" data-m="anim">Animação rápida<small>1 crédito</small></button><button class="opt" aria-pressed="${mode=='ia'}" data-m="ia">Vídeo com IA Real<small>usa foto se mexendo</small></button>`;
+ document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{mode=b.dataset.m;modes()})}
 modes();
 })();
-</script></body></html>
+</script>
+</body></html>
