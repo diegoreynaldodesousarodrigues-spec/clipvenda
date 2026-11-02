@@ -1,0 +1,7 @@
+{
+  "name": "clipvenda",
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "1.15.0"
+  }
+}
