@@ -1,21 +1,24 @@
-import { NextResponse } from "next/server";
-export async function POST(req: Request) {
+import { NextRequest, NextResponse } from "next/server";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+export async function POST(req: NextRequest) {
   try {
     const { prompt, imagem } = await req.json();
-    if (!process.env.GEMINI_API_KEY) {
-      return NextResponse.json({ erro: "Falta GEMINI_API_KEY na Vercel" }, { status: 500 });
-    }
+    const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    if (!apiKey) return NextResponse.json({ erro: "Sem API Key" }, { status: 500 });
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
     const parts: any[] = [{ text: prompt }];
     if (imagem) {
-      parts.push({ inlineData: { mimeType: "image/jpeg", data: imagem.split(",")[1] } });
+      const [meta, data] = imagem.split(",");
+      const mime = meta.match(/:(.*?);/)?.[1] || "image/jpeg";
+      parts.push({ inlineData: { mimeType: mime, data } });
     }
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents: [{ parts }] })
-    });
-    const j = await r.json();
-    const texto = j.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+    const result = await model.generateContent(parts);
+    const texto = result.response.text();
     return NextResponse.json({ texto });
   } catch (e: any) {
     return NextResponse.json({ erro: e.message }, { status: 500 });
