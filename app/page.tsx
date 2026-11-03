@@ -2,9 +2,8 @@
 export default function Page() {
   return (
     <div style={{padding:40,fontFamily:'sans-serif'}}>
-      <h1>ClipVenda</h1>
-      <p>Site no ar! Agora vamos colocar o código completo.</p>
-      <p>Se você tá vendo isso, o deploy deu certo!</p>
+      <h1>ClipVenda - Teste</h1>
+      <p>Site funcionando! Agora vamos colocar o código certo.</p>
     </div>
   );
 }
