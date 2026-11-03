@@ -117,7 +117,6 @@ export default function Page() {
 
   return (
     <>
-      <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet" />
       <style>{`
 :root{--bg:#f3f6ff;--panel:#fff;--ink:#0c1433;--mut:#5a6591;--line:#d9e0f7;--ac:#4a4dff;--ac2:#00c2a8;--warn:#ff7a45;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
